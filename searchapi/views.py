@@ -96,14 +96,7 @@ minilm = SentenceTransformer("all-MiniLM-L6-v2")
 #     X = sp.vstack(mats, format="csr", dtype=np.float32)
 #     return X, ids_all
 
-# # Build KNN
-# emb_matrix, uuid_list = _load_npz_chunks(PICKLE_CHUNKS_DIR)
-# if emb_matrix is None or not uuid_list:
-#     raise RuntimeError("No embeddings found. Check training output.")
-# knn_model = NearestNeighbors(n_neighbors=50, metric="cosine", algorithm="auto")
-# knn_model.fit(emb_matrix)
-# del emb_matrix
-# gc.collect()
+from .knn_loader import knn_model, uuid_list
 
 
 def build_query_vector(cmp_name: str, lvl_norm: str, jb_title: str) -> sp.csr_matrix:
@@ -235,7 +228,7 @@ def api_usage_stats(request):
     except Exception as e:
         return JsonResponse({"error": f"Stats middleware not found/loaded: {e}"}, status=500)
 
-    monitored = ["/aapi/search/", "/aapi/search-by-linkedin/", "/aapi/stats/"]
+    monitored = ["/api/search/", "/api/search-by-linkedin/", "/api/stats/"]
     try:
         stats = {"timestamp": np.datetime_as_string(np.datetime64("now"), unit="s"),
                  "requests_by_endpoint": []}

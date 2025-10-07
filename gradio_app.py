@@ -25,7 +25,7 @@ def process_field(field):
     return str(field).strip()
 
 def search_companies(ln_url, num_results):
-    api_url = "http://localhost:8009/aapi/search-by-linkedin/"
+    api_url = "http://localhost:8000/api/search-by-linkedin/"
     headers = {"Content-Type": "application/json"}
     payload = {"ln_url": ln_url, "k": num_results}
 
