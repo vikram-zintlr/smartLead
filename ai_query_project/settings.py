@@ -15,7 +15,7 @@ import joblib
 load_dotenv()
 
 # MongoDB connection using environment variables
-mongo_uri = "mongodb://d45b403107444ccf06594dca9f8e35ae87d5bbd2075c391359f3c0b8e610014e:8e246659231eb0f37024a28751b449c83782445d14cf103065efd095942adf48@172.31.25.128:28151/?authMechanism=DEFAULT&authSource=admin"
+mongo_uri = "mongodb://3402f86a8f1d7349340f6e2b155c193f90ef8d09a8287e960ee7dc46152bc23f:e4073cb35bd6a9f2219050739d4b2e3831e3e8a535533d8e557ee939399469fc@13.203.49.68:27720/?authMechanism=DEFAULT&authSource=admin"
 client = MongoClient(mongo_uri)
 db = client[os.getenv('MONGO_DB')]
 COLLECTION = db[os.getenv('MONGO_COLLECTION')]
